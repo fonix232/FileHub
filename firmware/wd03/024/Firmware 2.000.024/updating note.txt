@@ -1,0 +1,8 @@
+Date	Items	Version	No.	Comments
+2015.08.22	Firmware	2.000.024	1	Allow guest user to only access the share folder 
+			2	Modify web's logo
+	Windows Client Tools	V1.0.8.0	/	/
+	Mac Client Tools	V1.0.8.6	/	/
+	iOS Client Tools	V2.0.018	1	Invoke third party to open RAW file
+	Android Client tools	V2.0.026	1	Invoke third party to open RAW file
+			10	Fix the problem when playback video will into sleep mode
