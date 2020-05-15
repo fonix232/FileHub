@@ -1,3 +1,4 @@
 **/squashfs-root/*
 **/backup/*
 .DS_Store
+work/

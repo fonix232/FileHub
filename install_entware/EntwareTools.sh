@@ -98,9 +98,6 @@ installEntware () {
     printf "Installing Dropbear...\n"
     executeInEntware $1 install dropbear >/dev/null 2>&1
 
-    printf "Creating startup script...\n"
-    cp $TOOLCHAIN/startup.sh  $1/opt/etc/init.d/startup.sh >/dev/null 2>&1
-    chmod 0777 $1/opt/etc/init.d/startup.sh >/dev/null 2>&1
     printf "Entware base is ready!\n"
 }
 
@@ -115,4 +112,10 @@ destroyChroot() {
 copyEntware() {
     printf "Creating final Entware image...\n"
     tar -C $1/opt/ -cpf - . | tar -C $2 -xf - 2>&1 
+}
+
+copyRCLocal() {
+    printf "Adding Entware loader...\n"
+    cp $TOOLCHAIN/rc.local /etc/rc.local
+    etc_tools p
 }

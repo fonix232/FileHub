@@ -1,0 +1,29 @@
+#!/bin/sh
+# call extern shell
+
+STARTFLAG=0
+
+mountOptware () {
+    mount -o loop $1 /opt
+    export PATH=/opt/bin:$PATH
+    /opt/etc/init.d/rc.unslung start
+    if [ !-f /etc/rc.d/rc1.d ]; then
+        ln -s /opt/etc/init.d/rc.unslung /etc/rc.d/rc1.d/K01unslung
+        etc_tools p
+    fi
+}
+
+for disk in HardDisk1 UsbDisk1 UsbDisk2
+do
+    for volume in Volume1 Volume2
+    do
+        if [ $STARTFLAG -eq 0 ] && [ -e /data/$disk/$volume ]; then
+            EXTERN_DIR=/data/$disk/$volume
+            if [ -e $EXTERN_DIR/extern_package ]; then
+                mountOptware $EXTERN_DIR/extern_package
+                STARTFLAG=1
+            fi
+        fi
+    done
+done
+
